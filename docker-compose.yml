@@ -1,11 +1,12 @@
-version: "3"
+version: "3.3"
 
 networks:
   backend:
-    driver: bridge
+    driver: "bridge"
 
 services:
   app:
+    restart: always
     build: ./app
     volumes:
       - ./app:/usr/src/app
@@ -13,21 +14,30 @@ services:
       - 4000:4000
     stdin_open: true
     tty: true
+    environment:
+      PG_HOST: ${PG_HOST:-pg}
+      PG_PORT: ${PG_PORT:-5432}
+      PG_USER: ${PG_USER:-postgres}
+      PG_PASS: ${PG_DB_PASS}
+      PG_DB: ${PG_DB}
+      BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
     command:
       sh -c "cd ${PROJECT_NAME} && mix phx.server"
+    depends_on:
+      - pg
     networks:
       - backend
-
-  db:
+  pg:
+    container_name: pg
+    restart: always
     build: ./db
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      PGPORT: ${PG_PORT:-5432}
+      PGUSER: ${PG_USER:-postgres}
+      PGPASSWORD: ${PG_DB_PASS}
     ports:
-      - ${POSTGRES_PORT}:5432
+      - 5432:5432
     volumes:
       - ./db/postgres/tmp/data:/var/lib/postgresql/data
-    restart: always
     networks:
       - backend
