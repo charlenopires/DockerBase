@@ -1,0 +1,21 @@
+docker-compose build
+docker-compose run --rm app mix phx.new my_app
+cd my_app
+mix ecto.create
+mix phx.server
+iex -S mix phx.server
+
+Change file: app/my_app/config/dev.exs
+
+# Configure your database
+config :my_app, MyApp.Repo,
+  username: "postgres",  # <-- update
+  password: "password",  # <-- update
+  database: "testdb",    # <-- update
+  hostname: "db",        # <-- update
+
+docker-compose up -d
+docker-compose ps
+
+docker-compose run --rm app bash -c "cd my_app && mix ecto.create"
+docker-compose restart app
