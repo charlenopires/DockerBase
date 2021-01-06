@@ -1,4 +1,4 @@
-FROM elixir:1.11.2-slim
+FROM elixir:1.11.3-slim
 
 WORKDIR /usr/src/app
 
@@ -16,7 +16,7 @@ RUN apt-get update -y && \
 
 RUN apt-get install -y nodejs npm
 RUN npm install -g n
-RUN n 14.15.1
+RUN n 14.15.4
 RUN apt-get purge -y nodejs npm
 
 RUN yes | mix local.hex
