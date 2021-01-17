@@ -1,22 +1,21 @@
 version: "3.9"
 
 services:
-  app:
-    restart: always
-    build: ./app
-    volumes:
-      - ./:/usr/src/app
-    ports:
-      - 4000:4000
-    environment:
-      DATABASE_URL: postgres://postgres@pg/postgres
-      BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-    command: mix phx.server
-    depends_on:
-      - db
   db:
     image: postgres:12.5-alpine
     volumes:
       - ./_local/db/:/var/lib/postgresql/data
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
+  app:
+    restart: always
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 4000:4000
+    environment:
+      DATABASE_URL: postgres://postgres@pg/postgres
+    command: mix phx.server
+    depends_on:
+      - db
