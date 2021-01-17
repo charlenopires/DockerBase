@@ -14,8 +14,11 @@ services:
       - .:/usr/src/app
     ports:
       - 4000:4000
+    env_file:
+      - .env.dev
     environment:
-      DATABASE_URL: postgres://postgres@pg/postgres
-    command: mix phx.server
+      MIX_ENV: dev
+    command: 
+      sh -c "cd ${PROJECT_NAME} && mix phx.server"
     depends_on:
       - db
