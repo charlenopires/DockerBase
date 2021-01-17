@@ -1,3 +1,8 @@
+# Open Environment Variables Window
+rundll32.exe sysdm.cpl,EditEnvironmentVariables
+
+setx /M PROJECT_NAME appname
+
 docker-compose build
 docker-compose run --rm app mix phx.new my_app --live
 
