@@ -11,14 +11,14 @@ services:
     restart: always
     build: .
     volumes:
-      - .:/usr/src/app
+      - .:/usr/src/${PROJECT_NAME}
     ports:
       - 4000:4000
     env_file:
       - .env.dev
     environment:
       MIX_ENV: dev
-    command: 
-      sh -c "cd ${PROJECT_NAME} && mix phx.server"
+    command:
+      bash -c "cd ${PROJECT_NAME} && mix phx.server"
     depends_on:
       - db
