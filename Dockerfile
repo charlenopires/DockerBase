@@ -1,6 +1,6 @@
 FROM elixir:1.11
 
-WORKDIR /usr/src/app
+WORKDIR "/usr/src/${PROJECT_NAME}"
 
 RUN apt-get update \
 && apt-get install -y nodejs npm inotify-tools \
@@ -12,4 +12,4 @@ RUN apt-get update \
 && mix archive.install hex phx_new 1.5.7 --force \
 && apt-get clean
 
-CMD [ "mix", "phx.server" ]
+CMD ["mix", "phx.server"]
