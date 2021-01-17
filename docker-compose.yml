@@ -5,7 +5,7 @@ services:
     restart: always
     build: ./app
     volumes:
-      - ./app:/usr/src/app
+      - ./:/usr/src/app
     ports:
       - 4000:4000
     environment:
@@ -13,8 +13,10 @@ services:
       BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
     command: mix phx.server
     depends_on:
-      - pg
-  pg:
+      - db
+  db:
     image: postgres:12.5-alpine
     volumes:
-      - ./db/postgres/tmp/data:/var/lib/postgresql/data
+      - ./_local/db/:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
