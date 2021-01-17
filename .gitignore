@@ -1,2 +1,15 @@
+/_build/
+/_local/
+/cover/
+/deps/
+/doc/
+/.fetch
+erl_crash.dump
 .env
-/db/postgres/*
+.env.dev
+.env.prod
+*.ez
+fazportal-*.tar
+npm-debug.log
+/assets/node_modules/
+/priv/static/
