@@ -1,8 +1,9 @@
 version: "3.9"
 
 services:
-  db:
-    image: postgres:12.5-alpine
+  postgres:
+    image: postgres:13.2-alpine
+    container_name: postgres
     volumes:
       - ./_local/db/:/var/lib/postgresql/data
     environment:
@@ -21,4 +22,4 @@ services:
     command:
       bash -c "cd ${PROJECT_NAME} && mix phx.server"
     depends_on:
-      - db
+      - postgres
