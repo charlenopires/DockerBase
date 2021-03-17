@@ -19,8 +19,8 @@ config :my_app, MyApp.Repo,
 docker-compose up -d
 docker-compose ps
 
-docker-compose run --rm app bash -c "cd my_app && mix ecto.create"
+docker-compose run --rm app bash -c "mix ecto.create"
 docker-compose restart app
 
-docker-compose exec app bash -c "cd my_app && mix phx.gen.html Accounts User users name:string email:string bio:string"
-docker-compose exec app bash -c "cd my_app && mix ecto.migrate"
+docker-compose exec app bash -c "mix phx.gen.html Accounts User users name:string email:string bio:string"
+docker-compose exec app bash -c "mix ecto.migrate"
