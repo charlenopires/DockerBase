@@ -20,6 +20,6 @@ services:
     environment:
       MIX_ENV: dev
     command:
-      bash -c "cd ${PROJECT_NAME} && mix phx.server"
+      bash -c "mix phx.server"
     depends_on:
       - postgres
