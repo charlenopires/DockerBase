@@ -1,16 +1,16 @@
-FROM elixir:1.12
+FROM elixir:latest
 
 WORKDIR "/usr/src/<projectname>"
 
 RUN apt-get update \
 && apt-get install -y nodejs npm inotify-tools \
 && npm install -g n \
-&& n 14.17.0 \
+&& n 16.15.1 \
 && apt-get purge -y nodejs npm \
 && apt-get install -y postgresql-client \
 && yes | mix local.hex \
 && mix local.rebar --force \
-&& mix archive.install hex phx_new 1.5.9 --force \
+&& mix archive.install hex phx_new --force \
 && apt-get clean
 
 CMD ["mix", "phx.server"]
