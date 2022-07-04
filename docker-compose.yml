@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   postgres:
-    image: postgres:13.3-alpine
+    image: postgres:14.4-alpine
     volumes:
       - ./_local/db/:/var/lib/postgresql/data
     environment:
