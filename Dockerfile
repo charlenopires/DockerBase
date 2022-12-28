@@ -5,7 +5,7 @@ WORKDIR "/usr/src/<projectname>"
 RUN apt-get update \
 && apt-get install -y nodejs npm inotify-tools \
 && npm install -g n \
-&& n 16.15.1 \
+&& n 18.12.1 \
 && apt-get purge -y nodejs npm \
 && apt-get install -y postgresql-client \
 && yes | mix local.hex \
