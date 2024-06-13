@@ -9,7 +9,7 @@ erl_crash.dump
 .env.dev
 .env.prod
 *.ez
-fazportal-*.tar
+<appname>-*.tar
 npm-debug.log
 /assets/node_modules/
 /priv/static/
