@@ -1,2 +1,2 @@
-# PhoenixBase
-Phoenix Base Template for Docker
+# DockerBase
+Docker Base Template for Projects
